@@ -1,8 +1,5 @@
 ﻿using LetMePutSomeAsyncInIt.Web.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace LetMePutSomeAsyncInIt.Web.Controllers
@@ -20,17 +17,17 @@ namespace LetMePutSomeAsyncInIt.Web.Controllers
         [HttpGet]
         [Route("")]
         [Route("index")]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var albums = _albumRepo.GetAll();
+            var albums = await _albumRepo.GetAll();
             return View(albums);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult GetByID(int id)
+        public async Task<ActionResult> GetByID(int id)
         {
-            var album = _albumRepo.GetByID(id);
+            var album = await _albumRepo.GetByID(id);
             return View(album);
         }
     }
